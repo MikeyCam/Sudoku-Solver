@@ -15,7 +15,7 @@ app.layout = html.Div(
     children=[
         html.Div(StylingItems.navbar),
         html.Div(StylingItems.jumbotron),
-        html.Div(StylingItems.editable_table),
+        html.Div(StylingItems.editable_table, style={'width': '60%', "margin": "auto"}),
             ]
 )
 
