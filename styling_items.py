@@ -29,15 +29,15 @@ class StylingItems():
         className="jumbotron"
     )
 
-    board = np.array([[None,None,None,None,None,None,None,None,None,],
-                      [None,None,None,None,None,None,None,None,None,],
-                      [None,None,None,None,None,None,None,None,None,],
-                      [None,None,None,None,None,None,None,None,None,],
-                      [None,None,None,None,None,None,None,None,None,],
-                      [None,None,None,None,None,None,None,None,None,],
-                      [None,None,None,None,None,None,None,None,None,],
-                      [None,None,None,None,None,None,None,None,None,],
-                      [None,None,None,None,None,None,None,None,None,]])
+    board = np.array([[0,0,0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0,0,0],
+                        [0,0,0,0,0,0,0,0,0]])
 
     columns = ["Column {}".format(x) for x in range(1, 10)]
     rows = ["Row {}".format(x) for x in range(1, 10)]
@@ -49,6 +49,7 @@ class StylingItems():
             columns=[{"name": i, "id": i, "type": "numeric"}
                      for i in board.columns],
             data=board.to_dict('rows'),
+            style_header = {'display': 'none'},
             editable=True,
             style_cell={'textAlign': 'center'},
             style_data={
