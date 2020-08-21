@@ -29,15 +29,15 @@ class StylingItems():
         className="jumbotron"
     )
 
-    board = np.array([[0,0,0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0,0,0],
-                        [0,0,0,0,0,0,0,0,0]])
+    board = np.array([[0, 0, 0, 0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0, 0, 0, 0, 0]])
 
     columns = ["Column {}".format(x) for x in range(1, 10)]
     rows = ["Row {}".format(x) for x in range(1, 10)]
@@ -46,10 +46,10 @@ class StylingItems():
     editable_table = html.Div([
         dash_table.DataTable(
             id='typing_formatting_1',
-            columns=[{"name": i, "id": i, "type": "numeric"}
+            columns=[{"name": i, "id": i, "type": "numeric", }
                      for i in board.columns],
             data=board.to_dict('rows'),
-            style_header = {'display': 'none'},
+            style_header={'display': 'none'},
             editable=True,
             style_cell={'textAlign': 'center'},
             style_data={
@@ -79,4 +79,19 @@ class StylingItems():
                 },
             ],
         )
-    ])
+    ],
+        style={
+        'width': '60%', "margin": "auto"})
+
+    slider = html.Div([
+        dcc.Slider(
+            id='my-slider',
+            min=1,
+            max=81,
+            step=1,
+            value=30,
+        ),
+        html.Div(id='slider-output-container')
+    ],
+        style={
+        'width': '60%', "margin": "auto"})

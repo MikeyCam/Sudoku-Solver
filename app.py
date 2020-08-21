@@ -15,10 +15,16 @@ app.layout = html.Div(
     children=[
         html.Div(StylingItems.navbar),
         html.Div(StylingItems.jumbotron),
-        html.Div(StylingItems.editable_table, style={'width': '60%', "margin": "auto"}),
-            ]
+        html.Div(StylingItems.slider),
+        html.Div(StylingItems.editable_table),
+    ]
 )
 
+@app.callback(
+    dash.dependencies.Output('slider-output-container', 'children'),
+    [dash.dependencies.Input('my-slider', 'value')])
+def update_output(value):
+    return 'You have selected {}'.format(str(value))
 
 if __name__ == "__main__":
     app.run_server(debug=True)
