@@ -15,16 +15,30 @@ app.layout = html.Div(
     children=[
         html.Div(StylingItems.navbar),
         html.Div(StylingItems.jumbotron),
-        html.Div(StylingItems.slider),
+        html.Div(StylingItems.selection_row),
         html.Div(StylingItems.editable_table),
     ]
 )
+
 
 @app.callback(
     dash.dependencies.Output('slider-output-container', 'children'),
     [dash.dependencies.Input('my-slider', 'value')])
 def update_output(value):
-    return 'You have selected {}'.format(str(value))
+    print("Slider set to {}".format(value))
+
+@app.callback(
+    Output("create-button-hidden-div", "children"), [Input("create-button", "n_clicks")]
+)
+def on_button_click(value):
+        print("create_button_pushed {}".format(value))
+
+@app.callback(
+    Output("solve-button-hidden-div", "children"), [Input("solve-button", "n_clicks")]
+)
+def on_button_click(value):
+        print("solve_button_pushed".format(value))
+
 
 if __name__ == "__main__":
     app.run_server(debug=True)

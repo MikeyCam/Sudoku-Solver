@@ -10,8 +10,9 @@ import numpy as np
 
 class StylingItems():
     navbar = dbc.NavbarSimple(
-
-        dbc.NavItem(dbc.NavLink("LinkedIn", href="https://www.linkedin.com/")),
+        children=[
+            dbc.NavItem(dbc.NavLink("LinkedIn", href="https://www.linkedin.com/in/michael-camden-smith-552138b2/")),
+            dbc.NavItem(dbc.NavLink("GitHub Repo", href="https://github.com/MikeyCam/Sudoku-Solver"))],
         className="navbar navbar-expand-lg navbar-dark bg-dark"
     )
 
@@ -20,7 +21,7 @@ class StylingItems():
             dbc.Container(
                 [
                     html.H1("Sudoku Solver", className="display-3"),
-                    html.P("Solving Sudoku with the numpy array functions.",
+                    html.P("Solving Sudoku with the Numpy Array functions.",
                            className="lead"
                            ),
                 ],
@@ -90,8 +91,37 @@ class StylingItems():
             max=81,
             step=1,
             value=30,
+            marks={i: '{}'.format(i) for i in range(0, 81, 9)}
         ),
         html.Div(id='slider-output-container')
-    ],
+    ])
+
+    create_button = html.Div(
+        [
+            dbc.Button("Create a puzzle", id="create-button",
+                       className="btn btn-outline-primary"),
+            html.Span(id="create-button-hidden-div", style={"display": "none"})
+        ]
+    )
+
+    solve_button = html.Div(
+        [
+            dbc.Button("Solve a puzzle", id="solve-button",
+                       className="btn btn-outline-primary"),
+            html.Span(id="solve-button-hidden-div", style={"display": "none"})
+        ]
+    )
+
+    selection_row = html.Div(
+        [
+            dbc.Row(
+                [
+                    dbc.Col(html.Div(slider)),
+                    dbc.Col(html.Div(create_button)),
+                    dbc.Col(html.Div(solve_button)),
+                ]
+            ),
+        ],
         style={
-        'width': '60%', "margin": "auto"})
+            'width': '60%', "margin": "auto"}
+    )
