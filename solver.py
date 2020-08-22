@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 import random
 
 
@@ -60,20 +61,16 @@ def random_board(board, total_blanks):
     solved_board = solver(board)
 
     indicies = []
-    for x in range(0,9):
-        for y in range(0,9):
+    for x in range(0, 9):
+        for y in range(0, 9):
             index = [x, y]
             indicies.append(index)
 
     randoms_needed = random.sample(indicies, total_blanks)
-    for r,c in randoms_needed:
-        board[r, c]= 0
+    for r, c in randoms_needed:
+        board[r, c] = 0
 
-    return solved_board
+    solved_df = pd.DataFrame(solved_board, columns=["Column {}".format(x) for x in range(
+        1, 10)], index=["Row {}".format(x) for x in range(1, 10)]).to_dict('rows')
 
-
-board = np.full((9, 9), 0)
-
-board = random_board(board,8)
-    
-print(board)
+    return solved_df

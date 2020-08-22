@@ -11,7 +11,8 @@ import numpy as np
 class StylingItems():
     navbar = dbc.NavbarSimple(
         children=[
-            dbc.NavItem(dbc.NavLink("LinkedIn", href="https://www.linkedin.com/in/michael-camden-smith-552138b2/")),
+            dbc.NavItem(dbc.NavLink(
+                "LinkedIn", href="https://www.linkedin.com/in/michael-camden-smith-552138b2/")),
             dbc.NavItem(dbc.NavLink("GitHub Repo", href="https://github.com/MikeyCam/Sudoku-Solver"))],
         className="navbar navbar-expand-lg navbar-dark bg-dark"
     )
@@ -30,26 +31,13 @@ class StylingItems():
         className="jumbotron"
     )
 
-    board = np.array([[0, 0, 0, 0, 0, 0, 0, 0, 0],
-                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                      [0, 0, 0, 0, 0, 0, 0, 0, 0]])
-
-    columns = ["Column {}".format(x) for x in range(1, 10)]
-    rows = ["Row {}".format(x) for x in range(1, 10)]
-    board = pd.DataFrame(board, columns=columns, index=rows)
-
     editable_table = html.Div([
         dash_table.DataTable(
-            id='typing_formatting_1',
+            id='my_table',
             columns=[{"name": i, "id": i, "type": "numeric", }
-                     for i in board.columns],
-            data=board.to_dict('rows'),
+                     for i in ["Column {}".format(x) for x in range(1, 10)]],
+            data=pd.DataFrame(np.full((9, 9), 0), columns=["Column {}".format(x) for x in range(
+                1, 10)], index=["Row {}".format(x) for x in range(1, 10)]).to_dict('rows'),
             style_header={'display': 'none'},
             editable=True,
             style_cell={'textAlign': 'center'},
@@ -57,7 +45,18 @@ class StylingItems():
                 'whiteSpace': 'normal',
                 'height': 'auto',
             },
+
+
             style_data_conditional=[
+                {
+                    'if': {
+                        'filter_query': '{Column 1} = 0',
+                        'column_id': "Column 1"
+                    },
+                    'backgroundColor': '#B10DC9',
+                    'color': 'black'
+                },
+
                 {
                     'if': {'column_id': ["Column 1", "Column 2", "Column 3"], 'row_index': [3, 4, 5]},
                     'backgroundColor': 'rgb(30, 30, 30)',
@@ -77,7 +76,7 @@ class StylingItems():
                     'if': {'column_id': ["Column 7", "Column 8", "Column 9"], 'row_index': [3, 4, 5]},
                     'backgroundColor': 'rgb(30, 30, 30)',
                     'color': 'white'
-                },
+                } 
             ],
         )
     ],
