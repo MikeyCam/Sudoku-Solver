@@ -1,5 +1,5 @@
-# sudoku_solver
+# SudokuSolver
 
-A Sudoku Solver built in Python using mostly Numpy array methods.
-The interface was built in Dash.
+A Sudoku Solver and Builder built in Python using mostly Numpy array methods.
+
 

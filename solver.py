@@ -45,7 +45,9 @@ def solver(board):
     return board
 
 
-def random_board(board, total_blanks):
+def random_board(total_blanks):
+
+    board =  np.full((9,9), 0)
 
     # Input random values
     board[0, 0] = np.random.randint(low=1, high=9, dtype="int")
@@ -70,7 +72,4 @@ def random_board(board, total_blanks):
     for r, c in randoms_needed:
         board[r, c] = 0
 
-    solved_df = pd.DataFrame(solved_board, columns=["Column {}".format(x) for x in range(
-        1, 10)], index=["Row {}".format(x) for x in range(1, 10)]).to_dict('rows')
-
-    return solved_df
+    return board
