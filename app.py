@@ -1,5 +1,5 @@
 from solver import random_board
-Revifrom solver import solver
+from solver import solver
 
 NUMBER_OF_BLANKS = 20
 
